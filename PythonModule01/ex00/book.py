@@ -16,9 +16,9 @@ class Book:
             self.name = name
             self.last_update = datetime.datetime.now()
             self.creation_date = datetime.datetime.now()
-            self.recipes_list = {"starter": None,
-                                 "lunch": None,
-                                 "dessert": None}
+            self.recipes_list = {"starter": [],
+                                 "lunch": [],
+                                 "dessert": []}
         else:
             sys.exit(1)
 
@@ -63,6 +63,8 @@ class Book:
         if not isinstance(recipe, Recipe):
             print("recipe is not a Recipe.")
             return
-        self.recipes_list[recipe.recipe_type].append(recipe)
-        
+        recipe_type_list = ["starter", "lunch", "dessert"]
+        if recipe.recipe_type in recipe_type_list:
+            self.recipes_list[recipe.recipe_type].append(recipe)
+
 

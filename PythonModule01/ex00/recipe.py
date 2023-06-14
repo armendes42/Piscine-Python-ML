@@ -36,7 +36,7 @@ class Recipe:
         if isinstance(recipe_type, str) and len(recipe_type) == 0:
             print("Recipe_type is empty.")
             valid = False
-        if recipe_type not in recipe_type_list:
+        if isinstance(recipe_type, str) and recipe_type not in recipe_type_list:
             print("Recipe_type must be 'starter', 'lunch' or 'dessert'.")
             valid = False
         return valid
@@ -64,7 +64,3 @@ class Recipe:
         if self.description:
             txt += "\n" + self.description + "."
         return txt
-    
-tourte = Recipe("omelette", 4, 10, ['eggs', 'salt', 'pepper'], "", 'lunch')
-to_print = str(tourte)
-print(to_print)

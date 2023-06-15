@@ -53,7 +53,7 @@ class Vector:
             for i in range(values):
                 self.values.append([float(i)])
         elif is_range(values):
-            self.shape(values[1] - values[0], 1)
+            self.shape = (values[1] - values[0], 1)
             for i in range(values[0], values[1]):
                 self.values.append([float(i)])
         else:
@@ -103,7 +103,7 @@ class Vector:
         if isinstance(other, int) or isinstance(other, float):
             for i in range(self.shape[0]):
                 for j in range(self.shape[1]):
-                    new_vector.values[i][j] += other
+                    new_vector.values[i][j] *= other
         else:
             raise ValueError("Invalid type for multiplication")
         return new_vector
@@ -126,7 +126,7 @@ class Vector:
         dot_product = 0
         for i in range(self.shape[0]):
             for j in range(self.shape[1]):
-                product += self.values[i][j] * other.values[i][j]
+                dot_product += self.values[i][j] * other.values[i][j]
         return dot_product
     
     def T(self):

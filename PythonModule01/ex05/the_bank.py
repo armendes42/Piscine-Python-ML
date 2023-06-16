@@ -22,7 +22,7 @@ class Account(object):
 
 def is_account_valid(account):
     attributes_of_accounts = [attribut for attribut in dir(account) if not attribut.startswith("__")]
-    if len(dir(account)) % 2 == 0:
+    if len(attributes_of_accounts) % 2 == 0:
         return False
     if any(attribute.startswith("b") for attribute in attributes_of_accounts):
         return False
@@ -35,6 +35,7 @@ def is_account_valid(account):
         return False
     if not isinstance(account.name, str) or not isinstance(account.id, int) or (not isinstance(account.value, int) and not isinstance(account.value, float)):
         return False
+    return True
 
 
 class Bank(object):
@@ -73,11 +74,13 @@ class Bank(object):
         if not isinstance(amount, float):
             print("You must provide a numeric amount.")
             return False
-        if not any(account for account in self.accounts if account.name == origin) or any(account for account in self.accounts if account.name == dest):
+        if not any(account for account in self.accounts if account.name == origin) or not any(account for account in self.accounts if account.name == dest):
             print("One or both of these name are not registered accounts.")
             return False
         origin_account = [account for account in self.accounts if account.name == origin]
+        origin_account = origin_account[0]
         dest_account = [account for account in self.accounts if account.name == dest]
+        dest_account = dest_account[0]
         if not is_account_valid(origin_account) or not is_account_valid(dest_account):
             print("One or both of the accounts are corrupted.")
             return False
@@ -87,7 +90,7 @@ class Bank(object):
         if origin == dest:
             return True
         origin_account.value -= amount
-        dest_account.value += amount
+        dest_account.transfer(amount)
 
     def fix_account(self, name):
         """ fix account associated to name if corrupted
@@ -95,5 +98,24 @@ class Bank(object):
             @return True if success, False if an error occured
         """
         # ... Your code ...
-        
-
+        if not isinstance(name, str):
+            print("Name must be a string.")
+            return False
+        if not any(account for account in self.accounts if account.name == name):
+            print("This account is not existent.")
+            return False
+        account = [account for account in self.accounts if account.name == name]
+        account = account[0]
+        attributes_of_account = [attribute for attribute in dir(account) if not attribute.startswith("__")]
+        if any(attribute.startswith("b") for attribute in attributes_of_account):
+            for attribut in attributes_of_account:
+                if attribut.startswith("b"):
+                    delattr(account, attribut)
+        if (not any(attribute.startswith("zip") for attribute in attributes_of_account)
+            and not any(attribute.startswith("addr") for attribute in attributes_of_account)):
+            setattr(account, "zip", "111-222")
+        if len(attributes_of_account) % 2 == 0:
+            setattr(account, "abcdefghijklmnopqrstuvwxyz", "bonjour")
+        if is_account_valid(account):
+            return True
+        return False

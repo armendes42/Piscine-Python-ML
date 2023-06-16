@@ -9,5 +9,4 @@ else:
     new_str = sys.argv[1].translate(str.maketrans('', '', string.punctuation))
     word_list = list(new_str.split(" "))
     new_word_list = [i for i in word_list if len(i) > int(sys.argv[2])]
-    new_word_list = [i for i in new_word_list ]
     print(new_word_list)

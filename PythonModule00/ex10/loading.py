@@ -16,7 +16,7 @@ def ft_progress(lst):
             eta = round(eta, 2)
         else:
             eta = 0
-        out.write("\r" + "ETA: {}s [{}%][{}{}{}] {}/{} | elapsed time {}s".format(eta, percentage, "=" * (x - 1), ">", " " * (size - x), j, count, time_elapsed))
+        out.write("\r" + "ETA: {:.2f}s [{}%][{}{}{}] {}/{} | elapsed time {:.2f}s".format(eta, percentage, "=" * (x - 1), ">", " " * (size - x), j, count, time_elapsed))
         out.flush()
     show(0)
     for i, item in enumerate(lst):

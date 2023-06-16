@@ -1,9 +1,3 @@
-kata = ""
+kata = "The right format"
 
-result = ""
-for i in range(41 - len(kata)):
-    result += '-'
-
-result += kata
-
-print(result)
+print("{}".format(kata.rjust(41, '-')))

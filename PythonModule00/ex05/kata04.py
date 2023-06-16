@@ -1,29 +1,3 @@
 kata = (0, 4, 132.42222, 10000, 12345.67)
 
-result = "module_"
-if len(str(kata[0])) == 1:
-    result += '0'
-result += str(kata[0])
-
-result += ", ex_"
-
-if len(str(kata[1])) == 1:
-    result += '0'
-result += str(kata[1])
-
-result += " : "
-
-if len(str(kata[2])) > 6:
-    result += str(kata[2])[:6]
-else:
-    result += str(kata[2])
-
-result += ", "
-
-result += "{:.2e}".format(kata[3])
-
-result += ", "
-
-result += "{:.2e}".format(kata[4])
-
-print(result)
+print("module_{}, ex_{} : {:.2f}, {:.2e}, {:.2e}".format(str(kata[0]).zfill(2), str(kata[1]).zfill(2), kata[2], kata[3], kata[4]))

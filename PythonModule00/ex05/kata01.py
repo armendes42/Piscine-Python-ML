@@ -4,5 +4,4 @@ kata = {
 'PHP': 'Rasmus Lerdorf',
 }
 
-for key, value in kata.items():
-    print(key + " was created by " + value)
+print('\n'.join([f"{key} was created by {value}" for key, value in kata.items()]))

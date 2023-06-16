@@ -10,13 +10,13 @@ elif len(sys.argv) == 3:
 
         first_num = int(sys.argv[1])
         second_num = int(sys.argv[2])
-        print("Sum:        " + str(first_num + second_num))
-        print("Difference: " + str(first_num - second_num))
-        print("Product:    " + str(first_num * second_num))
+        print(f"Sum:        {str(first_num + second_num)}")
+        print(f"Difference: {str(first_num - second_num)}")
+        print(f"Product:    {str(first_num * second_num)}")
         if second_num == 0:
             print("Quotient:   ERROR (division by zero)")
             print("Remainder:  ERROR (modulo by zero)")
         else:
-            print("Quotient:   " + str(first_num / second_num))
-            print("Remainder:  " + str(first_num % second_num))
+            print(f"Quotient:   {str(first_num / second_num)}")
+            print(f"Remainder:  {str(first_num % second_num)}")
 
